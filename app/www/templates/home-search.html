@@ -1,0 +1,24 @@
+<ion-content ng-controller="HomeSearch" class="padding">
+    <br/>
+    <br/>
+    <button ng-click="selectRegion()" class="padding-top button button-block button-stable">
+        Select Region
+    </button>
+    <div ng-if="data.userRegion != undefined" class="card">
+        <div class="item item-text-wrap text-center">
+            {{regionName}}
+        </div>
+    </div>
+    <div class="list list-inset">
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Search" ng-model="summonerInput" user-enter="getLastMatches()">
+        </label>
+    </div>
+    <br/>
+    <div ng-repeat="match in lastMatches track by $index">
+        {{match}}
+    </div>
+</ion-content>
+
+
