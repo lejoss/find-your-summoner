@@ -16,23 +16,24 @@
         };
 
         // lists
-        $scope.regions            = [
-            { text: "Brazil", value: "br" },
-            { text: "Europe Nordic & East", value: "eune" },
-            { text: "Europe West", value: "euw" },
-            { text: "Latin America North", value: "lan" },
-            { text: "Latin America South", value: "las" },
-            { text: "North America", value: "na" },
-            { text: "Oceania", value: "oce" },
-            { text: "Russia", value: "ru" },
-            { text: "Turkey", value: "tr" },
-            { text: "South East Asia", value: "sea" },
-            { text: "Republic of Korea", value: "kr" }
-        ];  // lol regions
-        $scope.matches            = [];     // raw list of summoner's last five games
+
+        $scope.matches            = [];     // raw list of summoner's matches
         $scope.champions          = [];     // raw list of champions involved in last games
-        $scope.championsPromise   = [];     // array of promises used to return $q.all()
+        $scope.championPromises   = [];     // array of promises used to return $q.all()
         $scope.lastMatches        = [];     // array to be displayed on view
+        $scope.regions            = [
+            { name: "Brazil", value: "br" },
+            { name: "Europe Nordic & East", value: "eune" },
+            { name: "Europe West", value: "euw" },
+            { name: "Latin America North", value: "lan" },
+            { name: "Latin America South", value: "las" },
+            { name: "North America", value: "na" },
+            { name: "Oceania", value: "oce" },
+            { name: "Russia", value: "ru" },
+            { name: "Turkey", value: "tr" },
+            { name: "South East Asia", value: "sea" },
+            { name: "Republic of Korea", value: "kr" }
+        ];  // lol regions
 
         // methods
         $scope.selectRegion       = selectRegion;
@@ -49,32 +50,11 @@
                     { text: 'Accept',
                       type: 'button-positive',
                         onTap: function(e) {
-                            if($scope.data.userRegion == 'br') {
-                                $scope.regionName = 'Brazil'
-                            } else if ($scope.data.userRegion == 'eune') {
-                                $scope.regionName = 'Europe Nordic & East'
-                            } else if ($scope.data.userRegion == 'euw') {
-                                $scope.regionName = 'Europe West'
-                            } else if ($scope.data.userRegion == 'lan') {
-                                $scope.regionName = 'Latin America North'
-                            } else if ($scope.data.userRegion == 'las') {
-                                $scope.regionName = 'Latin America South'
-                            } else if ($scope.data.userRegion == 'na') {
-                                $scope.regionName = 'North America'
-                            } else if ($scope.data.userRegion == 'oce') {
-                                $scope.regionName = 'Oceania'
-                            } else if ($scope.data.userRegion == 'ru') {
-                                $scope.regionName = 'Russia'
-                            } else if ($scope.data.userRegion == 'tr') {
-                                $scope.regionName = 'Turkey'
-                            } else if ($scope.data.userRegion == 'sea') {
-                                $scope.regionName = 'South East Asia'
-                            } else if ($scope.data.userRegion == 'kr') {
-                                $scope.regionName = 'Republic of Korea'
-                            } else {
-                                $scope.regionName = null;
-                            }
-
+                            _.forEach($scope.regions, function(region) {
+                                if (region.value == $scope.data.userRegion) {
+                                    $scope.regionName = region.name
+                                }
+                            })
                         }
                     },
                     {
@@ -102,9 +82,9 @@
                       $scope.matches = result.data.matches;
 
                       _.forEach($scope.matches, function(match) {
-                          $scope.championsPromise.push(summonerService.getChampionById($scope.data.userRegion, match.champion));
+                          $scope.championPromises.push(summonerService.getChampionById($scope.data.userRegion, match.champion));
                       });
-                      return $q.all($scope.championsPromise);
+                      return $q.all($scope.championPromises);
                 })
                   // promise result of fetching champions in matches
                 .then(function(result) {
