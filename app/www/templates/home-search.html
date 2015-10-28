@@ -1,7 +1,7 @@
-<ion-content ng-controller="HomeSearch" class="padding">
+<ion-content ng-controller="HomeSearch" class="padding" style="background: #eee">
     <br/>
     <br/>
-    <button ng-click="selectRegion()" class="padding-top button button-block button-stable">
+    <button ng-click="selectRegion()" class="padding-top button button-block button-energized">
         Select Region
     </button>
     <div ng-if="data.userRegion != undefined" class="card">
@@ -18,14 +18,14 @@
     <br/>
     <div ng-repeat="match in vm track by $index">
         <div class="list card">
-
-            <div class="item row">
+            <!-- winner? -->
+            <div class="item row dark-bg">
                 <!-- header info -->
                 <p ng-if="match.winner" class="col text-center">VICTORY</p>
                 <p ng-if="!match.winner" class="col text-center">DEFEAT</p>
             </div>
             <!-- champion info -->
-            <div class="item row">
+            <div class="item row stable-bg">
                 <div class="col col-20">
                     <img  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=48&h=48" alt="div"/>
                 </div>

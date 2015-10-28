@@ -51,7 +51,7 @@
                 scope: $scope,
                 buttons: [
                     { text: 'Accept',
-                      type: 'button-positive',
+                      type: 'button-energized',
                         onTap: function(e) {
                             _.filter($scope.regions, function(region) {
                                 if (region.value == $scope.data.userRegion) {
@@ -62,7 +62,7 @@
                     },
                     {
                         text: 'Cancel',
-                        type: 'button-stable',
+                        type: 'button-dark',
                         onTap: function(e) {
                             $scope.data.userRegion = null;
                             selectRegionPopup.close();
@@ -166,7 +166,7 @@
                           return _.extend(match, _.omit(_.findWhere($scope.champions, { champId: match.champion }), 'champId'));
                       });
 
-                  console.log($scope.vm);
+
                   matchWithStats = null;
                   $scope.summonerInput = null;
             })

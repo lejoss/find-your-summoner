@@ -21,3 +21,17 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+
+.neon-text{
+  text-shadow: 0 0 5px #fff,
+  0 0 10px #fff,
+  0 0 15px #fff,
+  0 0 20px #ee2e24,
+  0 0 30px #ee2e24,
+  0 0 40px #ee2e24,
+  0 0 50px #ee2e24,
+  0 0 75px #ee2e24;
+  font-size: 16px;
+}
+
+
