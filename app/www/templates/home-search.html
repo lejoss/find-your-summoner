@@ -16,8 +16,50 @@
         </label>
     </div>
     <br/>
-    <div ng-repeat="match in lastMatches track by $index">
-        {{match}}
+    <div ng-repeat="match in vm track by $index">
+        <div class="list card">
+
+            <div class="item row">
+                <!-- header info -->
+                <p ng-if="match.winner" class="col text-center">VICTORY</p>
+                <p ng-if="!match.winner" class="col text-center">DEFEAT</p>
+            </div>
+            <!-- champion info -->
+            <div class="item row">
+                <div class="col col-20">
+                    <img  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=48&h=48" alt="div"/>
+                </div>
+                <div class="col col-50">
+                    <p>{{match.champName}}</p>
+                    <h6>{{match.champTitle}}</h6>
+                    <p>{{match.lane}}</p>
+                </div>
+                <div class="col col-10">
+                    <p>K</p>
+                    {{match.kills}}
+                </div>
+                <div class="col col-10">
+                    <p>D</p>
+                    {{match.deaths}}
+                </div>
+                <div class="col col-10">
+                    <p>A</p>
+                    {{match.assists}}
+                </div>
+            </div>
+            <!--
+            <div class="item row">
+                <div class="col col-33">
+                    {{match.timestamp | date: 'hh-mm-ss'}}
+                </div>
+                <div class="col col-33">
+                    {{match.minionsKilled}}
+                </div>
+                <div class="col col-33">
+                    {{match.champLevel}}
+                </div>
+            </div> -->
+        </div>
     </div>
 </ion-content>
 
